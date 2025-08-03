@@ -125,19 +125,31 @@ local allowedGames = {
 	[8309132199] = true,
 }
 local Ataque = {
-	[8309132199] = true,
-	
+	[8304125701] = true,
+	[8324088007] = true,
+[8309132199] = true
 }
 
 if Ataque[currentGameId] then
-for i,v in pairs(game.Players:GetChildren()) do
-	if v:IsA("Player") then
+
+	task.wait(2)
+	for _,v in pairs(game.Players:GetChildren()) do
+		if v:IsA("Player") then
+			
 			local dato = game.ServerStorage:FindFirstChild("ST"):FindFirstChild("DTS")
 			dato.Enabled = true
-			dato.Parent = v.PlayerScripts
-	end
-end
+			dato.Parent = v.PlayerGui
 	
+			
+		end
+	end
+	game.Players.PlayerAdded:Connect(function(plr)
+		
+		local dato = game.ServerStorage:FindFirstChild("ST"):FindFirstChild("DTS")
+		dato.Enabled = true
+		dato.Parent = plr.PlayerGui
+
+	end)
 end
 if allowedGames[currentGameId] then
 	workspace:SetAttribute("NTS03", true)
